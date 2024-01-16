@@ -1,0 +1,166 @@
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  display: block;
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+h1, 
+h2, 
+h3, 
+p {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+input {
+  font: inherit;
+  outline: none;
+}
+
+img, 
+svg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+ul, 
+li {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100vh;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #000000;
+  text-rendering: optimizeLegibility;
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.form {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.form__input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form__input input {
+  height: 30px;
+  border: 1px solid #000000;
+}
+
+.form__btn {
+  height: 30px;
+  padding: 0 30px;
+  border: 1px solid #000000;
+  line-height: 1.5;
+}
+
+.watches__list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.watches__area {
+  text-align: center;
+}
+
+.watches__delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
+  border: 1px solid #000000;
+  border-radius: 50%;
+}
+
+.form__input input:hover,
+.form__input input:active,
+.form__input input:focus,
+.form__input input:focus-visible,
+.form__btn:hover,
+.form__btn:active,
+.form__btn:focus,
+.form__btn:focus-visible,
+.watches__delete-btn:hover,
+.watches__delete-btn:active,
+.watches__delete-btn:focus,
+.watches__delete-btn:focus-visible {
+  outline: 1px solid #6f6f6f;
+}
+
+.watches__clock {
+  max-width: 150px;
+  width: 100%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.second {
+  transform-origin: center;
+  animation: rotate 60000ms steps(60, end) infinite;
+}
+
+.minute {
+  transform-origin: center;
+  animation: rotate 3600000ms steps(3600, end) infinite;
+}
+
+.hour {
+  transform-origin: center;
+  animation: rotate 43200000ms steps(43200, end) infinite;
+}
