@@ -42,7 +42,8 @@ const GetTimezone = async (city, zone) => {
     const time = momentTimezone(now).tz(cityTimezone);
     const cityUTC = time.format().substring(19);
 
-    if (cityUTC.includes(zone) && cityUTC.substring(0,3) === zone || (cityUTC === 'Z' && zone === '0')) {
+    if (cityUTC.includes(zone) && cityUTC.substring(0,3) === zone || 
+        (cityUTC === 'Z' && (zone === '0' || zone === '00' || zone === '+00' || zone === '-00'))) {
       const cityTime = new Date().toLocaleTimeString('ru-RU', {timeZone: cityTimezone});
       return {area: city, zone: cityTime};
     } else {
@@ -54,7 +55,7 @@ const GetTimezone = async (city, zone) => {
   }
 }
 
-let rowArray = [];
+let dataArray = [];
 
 function Watches(state) {
   const [data, setData] = React.useState(state);
@@ -65,9 +66,9 @@ function Watches(state) {
       if (!result) return;
       if (typeof(result) !== 'string') {
         setData(result);
-        if (rowArray.length === 0) rowArray.push(result);
-        if (rowArray.length !== 0 && rowArray.every(item => item.area != result.area)) {
-          rowArray.push(result);
+        if (dataArray.length === 0) dataArray.push(result);
+        if (dataArray.length !== 0 && dataArray.every(item => item.area != result.area)) {
+          dataArray.push(result);
         }
       } else {
         alert(result);
@@ -78,7 +79,7 @@ function Watches(state) {
 
   function deleteWatches(e) {
     if (e.target.closest('button.watches__delete-btn')) {
-      rowArray.splice(e.target.closest('li').id, 1);
+      dataArray.splice(e.target.closest('li').id, 1);
     }
     setData((prevState) => ({...prevState}));
   };
@@ -86,8 +87,8 @@ function Watches(state) {
   return (
     <div className='watches'>
       <ul className='watches__list' onClick={deleteWatches}>
-        { rowArray.length === 0 ? 'Добавьте часы'
-          : rowArray.map((item, i) => <WatchesItem data={item} key={i} id={i}/>) }
+        { dataArray.length === 0 ? 'Добавьте часы'
+          : dataArray.map((item, i) => <WatchesItem data={item} key={i} id={i}/>) }
       </ul>
     </div>
   );
